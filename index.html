@@ -145,8 +145,8 @@
 
         .tools {
             position: absolute;
-            bottom: 20px;
-            right: 20px;
+            bottom: 50%;
+            right: 48px;
             text-align: center;
         }
 
@@ -155,8 +155,19 @@
             margin: 5px;
             padding: 10px 0;
             text-align: center;
-            width: 50px;
+            width: 80px;
         }
+        .tools .reset-button {
+            display: inline-block;
+            margin: 5px;
+            padding: 10px 0;
+            text-align: center;
+            width: 50px;
+            position: fixed;
+            bottom: 50px;
+            right: 48px;
+        }
+        
 
         .mask {
             -webkit-filter: blur(5px);
@@ -187,12 +198,13 @@
     <div id="result" class="result">
     </div>
     <div id="tools" class="tools">
-        <button v-for="value in btns" @click="onClick(value)" class="pure-button"
-            :class="{ 'button-error': selected == value}">{{value}}</button>
+        <!-- <button v-for="value in btns" @click="onClick(value)" class="pure-button"
+            :class="{ 'button-error': selected == value}">{{value}}</button> -->
         <button class="pure-button" @click="toggle" :class="{'button-secondary': !running,
                'button-success': running}">{{running?'停!':'开始'}}</button>
-        <button class="pure-button button-warning" @click="reset">重置</button>
+        <button class="reset-button button-warning " @click="reset">重置</button>
     </div>
+    
     <script type="text/javascript" src="js/zepto.js"></script>
     <script type="text/javascript" src="js/vue.js"></script>
     <script type="text/javascript" src="js/tagcanvas.js"></script>
@@ -262,7 +274,7 @@
                         textColour: null,
                         initial: speed(),
                         dragControl: 1,
-                        textHeight: 14
+                        textHeight: 18
                     });
                 },
                 methods: {
@@ -272,11 +284,11 @@
                             location.reload(true);
                         }
                     },
-                    onClick: function (num) {
-                        $('#result').css('display', 'none');
-                        $('#main').removeClass('mask');
-                        this.selected = num;
-                    },
+                    // onClick: function (num) {
+                    //     $('#result').css('display', 'none');
+                    //     $('#main').removeClass('mask');
+                    //     this.selected = num;
+                    // },
                     toggle: function () {
                         if (this.running) {
                             TagCanvas.SetSpeed('myCanvas', speed());
